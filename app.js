@@ -6,15 +6,15 @@ var express = require('express'), app = express();
 var request = require('request')
 var path = require('path');
 
+app.use(express.static(__dirname+'/public'));
+
 app.set('views', path.join(__dirname+'/public/signup'));
 app.set('view engine', 'ejs');
 
-app.use(express.static(__dirname+'/public'));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use('/bower_components', express.static(__dirname+'/bower_components'));
-
 
 
 app.get('/',function (req,res) {
