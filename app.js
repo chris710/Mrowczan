@@ -12,7 +12,13 @@ app.get('/',function (req,res) {
 
 app.get('/signIn', function (req,res) {
     res.sendFile('signin.html', {
-        'root': dirname+'/public/signin'
+        'root': __dirname+'/public/signin'
+    });
+});
+
+app.get('/signUp', function (req, res) {
+    res.sendFile('signup.html', {
+        'root': __dirname+'/public/signup'
     });
 });
 
