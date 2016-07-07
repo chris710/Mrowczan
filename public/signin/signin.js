@@ -31,6 +31,7 @@ angular.module('signin', ['base64', 'ngRoute'])
         }).
             success(function(data, status, headers, config) {
             console.log(data);
+            $location.path('/userHome');
         }).
             error(function(data, status, headers, config) {
             console.log(data, status);
