@@ -41,3 +41,13 @@ body {
 .jumbotron{
     background-color: #ffd2b4 !important;
 }
+.list-group-item.active,
+.list-group-item.acrive:focus, .list-group-item.active:hover{
+  background-color: #ffd2b4;
+  border-color: #ffd2b4;
+}
+.list-group-item.active .list-group-item-text,
+.list-group-item.active:focus .list-group-item-text,
+.list-group-item.active:hover .list-group-item-text {
+  color: #56010b !important;
+}

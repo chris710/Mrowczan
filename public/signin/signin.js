@@ -29,13 +29,13 @@ angular.module('signin', ['base64', 'ngRoute', 'myAppService'])
             cache: false,
             url: 'http://127.0.0.1:5000/user/'+username
         }).
-            success(function(data, status, headers, config) {
+        success(function(data, status, headers, config) {
             console.log(data);
             CommonProp.setUser(username);
             CommonProp.setUserAuth(authdata);
             $location.path('/userHome');
         }).
-            error(function(data, status, headers, config) {
+        error(function(data, status, headers, config) {
             console.log(data, status);
         });
     };

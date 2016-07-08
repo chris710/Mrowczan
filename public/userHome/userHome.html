@@ -13,10 +13,37 @@
     <div class="list-group" ng-repeat="task in tasks">
         <a href="#" onclick="return false;" class="list-group-item active">
             <p class="list-group-item-text">{{task.title}}</p>
+            <span class="pull-right">
+                <button class="btn btn-xs btn-info" ng-click="editTask(task.title,task.id,task.tag)" data-target="#editModal">EDIT</button>
+                <button class="btn btn-xs btn-warning" ng-click="confirmDelete(task.id,task.tag)" data-target="#deleteModal">DELETE</button>
+            </span>
         </a>
     </div>
 
     <footer class="footer">
         <p>&copy; Kąmpany 2016</p>
     </footer>
+</div>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="editModalLabel">Update Task</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">Title:</label>
+                        <input type="text" class="form-control" ng-model="edit.task" id="recipient-name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="update()">Update</button>
+            </div>
+        </div>
+    </div>
 </div>
