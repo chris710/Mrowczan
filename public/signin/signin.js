@@ -4,7 +4,7 @@
 
 'use strict';
 
-angular.module('signin', ['base64', 'ngRoute'])
+angular.module('signin', ['base64', 'ngRoute', 'myAppService'])
     
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/signin', {
@@ -13,7 +13,7 @@ angular.module('signin', ['base64', 'ngRoute'])
     });
 }])
 
-.controller('SignInCtrl', ['$scope', '$http', '$base64', '$window', '$location', function($scope, $http, $base64, $window, $location){
+.controller('SignInCtrl', ['$scope', '$http', '$base64', '$window', '$location', 'CommonProp', function($scope, $http, $base64, $window, $location, CommonProp){
     $scope.signIn = function() {
         var username = $scope.username;
         var password = $scope.password;
@@ -31,6 +31,8 @@ angular.module('signin', ['base64', 'ngRoute'])
         }).
             success(function(data, status, headers, config) {
             console.log(data);
+            CommonProp.setUser(username);
+            CommonProp.setUserAuth(authdata);
             $location.path('/userHome');
         }).
             error(function(data, status, headers, config) {
