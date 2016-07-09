@@ -31,9 +31,12 @@ angular.module('userHome', ['ngRoute', 'myAppService'])
         }).
         success(function(data, status, headers, config){
             console.log(data);
+            console.log(data._items);
             for(var i=0; i<data._items.length; i++) {       //TODO doczytaj jeszcze zdjęcia
                 $scope.tasks.push({
-                    'title': data._items[i].name
+                    'title': data._items[i].name,
+                    'id': data._items[i]._id,
+                    'tag':data._items[i]._etag
                 });
             }
         }).
@@ -50,6 +53,7 @@ angular.module('userHome', ['ngRoute', 'myAppService'])
         $scope.edit.task = title;
         $scope.edit.id = id;
         $scope.edit.tag = tag;
+        console.log(tag);
         $('#editModal').modal('show');
     }
 

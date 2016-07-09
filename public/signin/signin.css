@@ -42,7 +42,7 @@ body {
     background-color: #ffd2b4 !important;
 }
 .list-group-item.active,
-.list-group-item.acrive:focus, .list-group-item.active:hover{
+.list-group-item.active:focus, .list-group-item.active:hover{
     background-color: #ffd2b4;
     border-color: #ffd2b4;
 }
@@ -56,4 +56,13 @@ div.logo img{
 }
 .modal-backdrop{
     z-index: -1;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus {
+    background-color: #56010b;
+}
+
+.nav-pills > li.active > a:hover {
+    background-color: #56010b;
+    color:black;
 }

@@ -1,4 +1,4 @@
-RESOURCE_METHODS = ['GET', 'POST']
+RESOURCE_METHODS = ['GET', 'POST', 'DELETE']
 ITEM_METHODS = ['GET', 'PATCH', 'DELETE']
 X_DOMAINS = '*'
 X_HEADERS = ['Authorization', 'If-Match', 'Access-Control-Expose-Headers', 'Content-Type', 'Pragma', 'Cache-Control']
@@ -34,7 +34,13 @@ DOMAIN = {
             'name': {
                 'type': 'string'
             },
+            'image': {
+                'type': 'media'
+            },
             'username': {
+                'type': 'string'
+            },
+            'thread': {
                 'type': 'string'
             }
         },
