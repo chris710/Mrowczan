@@ -1,6 +1,5 @@
 # Mrówczan
-# Simple imageboard made using AngularJS, Node.js powered by Python Eve API.
-# AngularJS & Node.js App Powered By Python Eve API Part 2
+## Simple imageboard made using AngularJS, Node.js powered by Python Eve API.
 
 ### Clone the Repository and Navigate to the project directory
 ### Install Dependencies 
