@@ -6,6 +6,9 @@ var express = require('express'), app = express();
 var request = require('request')
 var path = require('path');
 
+var admin_username = 'admin'
+var admin_password = 'password'
+
 app.use(express.static(__dirname+'/public'));
 
 app.set('views', path.join(__dirname+'/public/signup'));

@@ -16,6 +16,9 @@
     <div class="list-group" ng-repeat="task in tasks">
         <a href="#" onclick="return false;" class="list-group-item active">
             <p class="list-group-item-text">{{task.title}}</p>
+            <p class="list-group-item-text">{{task.thread}}</p>
+            <img ng-src="data:{{task.image['filetype']}};base64,{{task.image['base64']}}" />
+
             <span class="pull-right">
                 <button class="btn btn-xs btn-info" ng-click="editTask(task.title,task.id,task.tag)" data-target="#editModal">EDIT</button>
                 <button class="btn btn-xs btn-warning" ng-click="confirmDelete(task.id,task.tag)" data-target="#deleteModal">DELETE</button>

@@ -30,13 +30,17 @@ angular.module('userHome', ['ngRoute', 'myAppService'])
             url: 'http://127.0.0.1:5000/item?where={"username":"'+user+'"}'
         }).
         success(function(data, status, headers, config){
-            console.log(data);
-            console.log(data._items);
-            for(var i=0; i<data._items.length; i++) {       //TODO doczytaj jeszcze zdjęcia
+            //console.log(data);
+            //console.log(auth);
+            //console.log(JSON.parse(data._items[1].image));
+            for(var i=0; i<data._items.length; i++) {
+                var img = JSON.parse(data._items[i].image);
+                console.log(img);
                 $scope.tasks.push({
                     'title': data._items[i].name,
                     'id': data._items[i]._id,
-                    'tag':data._items[i]._etag
+                    'tag':data._items[i]._etag,
+                    'image':img
                 });
             }
         }).
