@@ -65,7 +65,7 @@ DOMAIN = {
             # 'required': True,
         }
     },
-    'boards': {
+    'boards': {     # TODO wywalicz
         'schema': {
             'name': {
                 'type': 'string'

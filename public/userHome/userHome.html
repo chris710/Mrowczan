@@ -25,6 +25,10 @@
             </span>
         </a>
     </div>
+    <div style="text-align: center;">
+        <span class="page-link" ng-show="prev != false" ng-click="loadPrev()">Poprzednia strona</span>
+        <span class="page-link" ng-show="next != false" ng-click="loadNext()">Następna strona</span>
+    </div>
 
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -63,6 +67,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
     <footer class="footer">
