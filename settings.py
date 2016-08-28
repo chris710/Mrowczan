@@ -36,10 +36,15 @@ DOMAIN = {
                 'type': 'string'
             },
             'image': {
-                'type': 'string'       # żarcik
+                'type': 'string'
             },
             'username': {
-                'type': 'string'
+                # 'type': 'string'
+                'type': 'objectid',
+                'data_relation': {
+                    'resource': 'user'
+                },
+                'required': True
             },
             'thread': {
                 'type': 'objectid',
@@ -63,13 +68,6 @@ DOMAIN = {
                 'resource': 'boards'
             },
             # 'required': True,
-        }
-    },
-    'boards': {     # TODO wywalicz
-        'schema': {
-            'name': {
-                'type': 'string'
-            }
         }
     }
 }

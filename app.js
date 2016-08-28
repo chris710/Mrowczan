@@ -3,7 +3,7 @@
  */
 var bodyParser = require('body-parser');
 var express = require('express'), app = express();
-var request = require('request')
+var request = require('request');
 var path = require('path');
 
 var admin_username = 'admin'

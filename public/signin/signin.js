@@ -31,7 +31,7 @@ angular.module('signin', ['base64', 'ngRoute', 'myAppService'])
         }).
         success(function(data, status, headers, config) {
             console.log(data);
-            CommonProp.setUser(username);
+            CommonProp.setUser(data._id);
             CommonProp.setUserAuth(authdata);
             $location.path('/userHome');
         }).

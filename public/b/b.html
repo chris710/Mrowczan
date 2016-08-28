@@ -2,9 +2,9 @@
     <div class="header">
         <nav>
             <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="#userHome">Home</a></li>
+                <li role="presentation"><a href="#userHome">Home</a></li>
                 <li role="presentation"><a href="#addItem">Add</a></li>
-                <li role="presentation"><a href="#b">/b/</a></li>
+                <li role="presentation"><a href="#b" class="active">/b/</a></li>
                 <li role="presentation"><a href="#">Logout</a></li>
             </ul>
         </nav>
@@ -13,7 +13,7 @@
             <h3 class="ẗext-muted">Mrówczan</h3>
         </div>
     </div>
-    <h1>Twoje posty</h1>
+    <h1>/b/</h1>
     <div class="list-group" ng-repeat="task in tasks">
         <a href="#" onclick="return false;" class="list-group-item active">
             <p class="list-group-item-text">{{task.title}}</p>
@@ -56,20 +56,20 @@
     </div>
 
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="text-align:center;">
-                <h4 class="modal-title" style="color:red;" id="deleteModalLabel">You are about to Delete this Post!</h4>
-            </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="text-align:center;">
+                    <h4 class="modal-title" style="color:red;" id="deleteModalLabel">You are about to Delete this Post!</h4>
+                </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" ng-click="deleteTask()">Delete</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" ng-click="deleteTask()">Delete</button>
+                </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 
     <footer class="footer">
         <p>&copy; Kąmpany 2016</p>
