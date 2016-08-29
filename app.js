@@ -6,8 +6,8 @@ var express = require('express'), app = express();
 var request = require('request');
 var path = require('path');
 
-var admin_username = 'admin'
-var admin_password = 'password'
+var admin_username = 'admin';
+var admin_password = 'password';
 
 app.use(express.static(__dirname+'/public'));
 
@@ -24,19 +24,20 @@ app.get('/',function (req,res) {
     res.sendFile('index.html',{'root':__dirname+'/public/index'});
 });
 
-app.get('/signIn', function (req,res) {
+app.get('/signin', function (req,res) {
     res.sendFile('signin.html', {
         'root': __dirname+'/public/signin'
     });
 });
 
-app.get('/signUp', function (req, res) {
+app.get('/signup', function (req, res) {
     res.render('signup',{error:''})
     /*res.sendFile('signup.ejs', {
         'root': __dirname+'/public/signup'
     });*/
 });
 
+//app.post('/register', function(req, res) {
 app.post('/register', function(req, res) {
     var _firstName = req.body.inputFirstName;
     var _lastName = req.body.inputLastName;
@@ -78,7 +79,8 @@ app.post('/register', function(req, res) {
             })
         } else {
             console.log('All good');
-            res.redirect('/signIn');
+            //res.redirect('/signin');
+            res.redirect('/');
         }
     })
 });

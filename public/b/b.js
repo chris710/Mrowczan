@@ -31,7 +31,7 @@ angular.module('b', ['ngRoute', 'myAppService'])
             $http({             //wysyłanie żądania do API
                 method: 'GET',
                 cache: false,
-                url: 'http://127.0.0.1:5000/item?where={"username":"'+user+'"}&max_results=5'
+                url: 'http://127.0.0.1:5000/item?max_results=5'
             }).
             success(function(data, status, headers, config){
                 //console.log(data);
@@ -45,7 +45,8 @@ angular.module('b', ['ngRoute', 'myAppService'])
                         'title': data._items[i].name,
                         'id': data._items[i]._id,
                         'tag':data._items[i]._etag,
-                        'image':img
+                        'image':img,
+                        'username':data._items[i].username
                     });
                 }
                 //console.log(data._links.next.href);

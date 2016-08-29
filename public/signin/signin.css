@@ -74,3 +74,19 @@ div.logo img{
     border-radius: 5px;
     background-color: #ffd2b4;
 }
+/*.sr-only{*/
+input, textarea{
+    background-color: #ffd2b4;     !important;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #ffd2b4;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #ffd2b4;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #ffd2b4;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #ffd2b4;
+}

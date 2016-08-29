@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-    <link href="../signin/signin.css" rel="stylesheet">
-</head>
-<body>
 <div class="container">
     <div class="header">
+            <!--<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+            <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+            <link href="../signup/signup.css" rel="stylesheet">-->
         <nav>
             <ul class="nav nav-pills pull-right">
-                <li role="presentation"><a href="/">Home</a></li>
-                <li role="presentation"><a href="/signIn">Sign In</a></li>
-                <li role="presentation" class="active"><a href="#">Sign Up</a></li>
+                <li role="presentation"><a href="#">Home</a></li>
+                <li role="presentation"><a href="#signin">Sign In</a></li>
+                <li role="presentation" class="active"><a href="#signup">Sign Up</a></li>
             </ul>
         </nav>
         <div class="logo">
@@ -22,20 +17,23 @@
     </div>
     <div class="jumbotron">
         <h1>Zarejestruj się na mrówczanie</h1>
-        <form class="form-signin" action="/register" method="post">
+        <!--<form class="form-signin" action="/register" method="post">-->
+        <form class="form-signin">
             <label for="inputFirstName" class="sr-only">First Name</label>
-            <input type="name" name="inputFirstName" id="inputFirstName" class="form-control" placeholder="First Name" required autofocus>
+            <input type="name" name="inputFirstName" id="inputFirstName" ng-model="firstname" class="form-control" placeholder="First Name" required autofocus>
             <label for="inputLastName" class="sr-only">Last Name</label>
-            <input type="name" name="inputLastName" id="inputLastName" class="form-control" placeholder="Last Name" required autofocus>
+            <input type="name" name="inputLastName" id="inputLastName" ng-model="lastname" class="form-control" placeholder="Last Name" required autofocus>
             <label for="inputUserName" class="sr-only">Username</label>
-            <input type="name" name="inputUsername" id="inputUserame" class="form-control" placeholder="Username" required autofocus>
+            <input type="name" name="inputUsername" id="inputUserame" ng-model="username" class="form-control" placeholder="Username" required autofocus>
             <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
+            <input type="password" name="inputPassword" id="inputPassword" ng-model="password" class="form-control" placeholder="Password" required>
             <label for="inputPhone" class="sr-only">Password</label>
-            <input type="number" name="inputPhone" id="inputPhone" class="form-control" placeholder="Phone" required>
+            <input type="number" name="inputPhone" id="inputPhone" ng-model="phone" class="form-control" placeholder="Phone" required>
 
-            <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-            <span style="color:red;"><%= error %></span>
+            <!--<button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>-->
+            <button id="btnSignIn" class="btn btn-lg btn-primary btn-block" ng-click="signUp()">Sign up</button>
+            <!--<span style="color:red;" ng-show="error != null"><%= error %></span>-->
+            <span style="color:red;" ng-show="error != null">{{error}}</span>
         </form>
     </div>
 
@@ -43,5 +41,3 @@
             <p>&copy; Kąmpany 2016</p>
     </footer>
 </div>
-</body>
-</html>

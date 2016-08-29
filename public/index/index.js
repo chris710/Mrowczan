@@ -6,6 +6,7 @@ angular.module('myApp', [
     'ngRoute',
     'home',
     'signin',
+    'signup',
     'userHome',
     'addItem',
     'b'
