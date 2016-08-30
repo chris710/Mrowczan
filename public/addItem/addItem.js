@@ -25,6 +25,7 @@ angular.module('addItem', ['ngRoute','naif.base64', 'myAppService'])
         var user = CommonProp.getUser();
 
         $http.defaults.headers.common = {"Access-Control-Request-Headers": "accept, origin, authorization"};
+        //$http.defaults.headers.common = {"Access-Control-Expose-Headers": "Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin"};
         $http.defaults.headers.common = {"Access-Control-Expose-Headers": "Origin, X-Requested-With, Content-Type, Accept"};
         $http.defaults.headers.common["Cache-Control"] = "no-cache";
         $http.defaults.headers.common.Pragma = "no-cache";
@@ -40,9 +41,10 @@ angular.module('addItem', ['ngRoute','naif.base64', 'myAppService'])
             method: 'POST',
             cache: false,
             url: 'http://127.0.0.1:5000/item',
+            //url: 'http://localhost:5000/item',
             data: {
                 name: title,
-                username: user,
+                user: user,
                 image: JSON.stringify($scope.img),
                 //thread: 'b1'
             }

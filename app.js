@@ -37,7 +37,6 @@ app.get('/signup', function (req, res) {
     });*/
 });
 
-//app.post('/register', function(req, res) {
 app.post('/register', function(req, res) {
     var _firstName = req.body.inputFirstName;
     var _lastName = req.body.inputLastName;

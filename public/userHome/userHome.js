@@ -31,7 +31,7 @@ angular.module('userHome', ['ngRoute', 'myAppService'])
         $http({             //wysyłanie żądania do API
             method: 'GET',
             cache: false,
-            url: 'http://127.0.0.1:5000/item?where={"username":"'+user+'"}&max_results=5'
+            url: 'http://127.0.0.1:5000/item?where={"user":"'+user+'"}&max_results=5'
         }).
         success(function(data, status, headers, config){
             //console.log(data);
