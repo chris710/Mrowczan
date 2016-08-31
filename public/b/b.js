@@ -19,6 +19,7 @@ angular.module('b', ['ngRoute', 'myAppService'])
         var next = false;
         var prev = false;
         $scope.edit = {};
+        $scope.user = CommonProp.getUser();
         
         
         //TODO get all threads
@@ -33,7 +34,7 @@ angular.module('b', ['ngRoute', 'myAppService'])
             $http({             //wysyłanie żądania do API
                 method: 'GET',
                 cache: false,
-                url: 'http://127.0.0.1:5000/thread?max_results=5'
+                url: 'http://127.0.0.1:5000/thread?sort=[("_created",-1)]&max_results=5'
             }).
             success(function(data, status, headers, config){
                 console.log(data);
@@ -49,6 +50,7 @@ angular.module('b', ['ngRoute', 'myAppService'])
                         'op':data._items[i].op,
                         'tasks': [],
                         'id': data._items[i]._id,
+                        'tag':data._items[i]._etag,
                     });
                     getAllTasks(data._items[i]._id, i)
                 }
@@ -164,7 +166,7 @@ angular.module('b', ['ngRoute', 'myAppService'])
             $('#deleteModal').modal('show');
         };
 
-        $scope.deleteTask = function(){
+        $scope.deleteThread = function(){     //TODO delete thread
             $http.defaults.headers.common = {"Access-Control-Request-Headers": "accept, origin, authorization"};
             $http.defaults.headers.common = {"Access-Control-Expose-Headers": "Origin, X-Requested-With, Content-Type, Accept"};
             $http.defaults.headers.common["Cache-Control"] = "no-cache";
@@ -175,10 +177,9 @@ angular.module('b', ['ngRoute', 'myAppService'])
             $http({
                 method: 'DELETE',
                 cache: false,
-                url: 'http://127.0.0.1:5000/item/'+ $scope.deletion.id}).
+                url: 'http://127.0.0.1:5000/thread/'+ $scope.deletion.id}).
             success(function(data, status, headers, config) {
                 $('#deleteModal').modal('hide');
-                getAllTask();           //TODO
                 getAllThreads();
             }).
             error(function(data, status, headers, config) {

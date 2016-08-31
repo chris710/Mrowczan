@@ -18,11 +18,14 @@ class Authenticate(BasicAuth):
         else:
             return True
 
-# TODO when getting thread return all posts in this thread
-#def add_posts_to_thread()
+# TOdO delete all posts in thread
+def remove_thread_items(thread):
+    #TODO check if user is authorized (is op)
+    app.data.driver.db['item'].delete({"thread": thread['_id']})
 
 # TODO when deleting user/thread delete all posts there
 def remove_user_items(user):
+    #TODO check if user
     app.data.driver.db['item'].delete({"user": user['_id']})
     #items = app.data.driver.db['item']
     #for items.find({'_id': payload._id})
@@ -41,7 +44,8 @@ if __name__ == '__main__':
     app = Eve(auth=Authenticate)
     Bootstrap(app)
     app.register_blueprint(eve_docs, url_prefix='/docs')
-    app.on_delete_item_user += remove_user_items
+    app.on_delete_user += remove_user_items
+    app.on_delete_thread += remove_thread_items
     app.on_insert_item += add_user_to_item
     #app.on_fetched_thread += add_posts_to_thread
     app.run()

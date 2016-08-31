@@ -31,16 +31,11 @@ angular.module('userHome', ['ngRoute', 'myAppService'])
         $http({             //wysyłanie żądania do API
             method: 'GET',
             cache: false,
-            url: 'http://127.0.0.1:5000/item?where={"user":"'+user+'"}&max_results=5'
+            url: 'http://127.0.0.1:5000/item?where={"user":"'+user+'"}&sort=[("_created",-1)]&max_results=5'
         }).
         success(function(data, status, headers, config){
-            //console.log(data);
-            //console.log(auth);
-            //console.log(JSON.parse(data._items[1].image));
-            //console.log(data);
             for(var i=0; i<data._items.length; i++) {
                 var img = JSON.parse(data._items[i].image);
-                //console.log(img);
                 $scope.tasks.push({
                     'title': data._items[i].name,
                     'id': data._items[i]._id,
@@ -48,7 +43,6 @@ angular.module('userHome', ['ngRoute', 'myAppService'])
                     'image':img
                 });
             }
-            //console.log(data._links.next.href);
             if(data._links.next != null) {
                 $scope.next = true;
                 nextlink = data._links.next.href;  
