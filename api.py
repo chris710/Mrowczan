@@ -1,5 +1,6 @@
 from eve import Eve
 from eve.auth import BasicAuth
+from flask import abort
 from flask.ext.bootstrap import Bootstrap
 from eve_docs import eve_docs
 
@@ -20,20 +21,18 @@ class Authenticate(BasicAuth):
 
 # TOdO delete all posts in thread
 def remove_thread_items(thread):
-    #TODO check if user is authorized (is op)
-    app.data.driver.db['item'].delete({"thread": thread['_id']})
+    users = app.data.driver.db['user']
+    user = users.find_one({"_id": thread[0]['op']})
+    if user != None:
+        app.data.driver.db['item'].delete({"thread": thread['_id']})
+    else:
+        abort(401)
 
 # TODO when deleting user/thread delete all posts there
 def remove_user_items(user):
-    #TODO check if user
     app.data.driver.db['item'].delete({"user": user['_id']})
-    #items = app.data.driver.db['item']
-    #for items.find({'_id': payload._id})
-    #for item in user['_items']:
-        # remove items
 
 # TOdO find name for post and add user field from request
-#def add_user_to_item(payload):
 def add_user_to_item(payload):
     users = app.data.driver.db['user']
     user = users.find_one({"_id": payload[0]['user']})

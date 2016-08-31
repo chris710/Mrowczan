@@ -150,7 +150,6 @@ angular.module('b', ['ngRoute', 'myAppService'])
             }).
             success(function (data,status,headers,config) {
                 $('#editModal').modal('hide');
-                //getAllTask();           //TOdO
                 getAllThreads();
             }).
             error(function(data,status,headers,config) {

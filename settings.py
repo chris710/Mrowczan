@@ -52,7 +52,7 @@ DOMAIN = {
                 'data_relation': {
                     'resource': 'thread'
                 },
-                'required': True,     # TODO to pozniej
+                'required': True,
             }
         },
         'resource_methods': ['GET', 'POST', 'DELETE'],
@@ -75,7 +75,6 @@ DOMAIN = {
                 'data_relation': {
                     'resource': 'item'
                 },
-                # 'required': True
             },
         },
         'resource_methods': ['GET', 'POST', 'DELETE'],
