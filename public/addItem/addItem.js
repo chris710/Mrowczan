@@ -31,7 +31,6 @@ angular.module('addItem', ['ngRoute','naif.base64', 'myAppService'])
         $http.defaults.headers.common.Pragma = "no-cache";
         $http.defaults.headers.common['Authorization'] = 'Basic '+auth;
 
-        //var fileName = filedialog();
         if($scope.img === undefined) {
             $scope.img = {filetype: "", filename: "", filesize: 0, base64: ""};
         }

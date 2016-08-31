@@ -47,7 +47,8 @@ angular.module('b', ['ngRoute', 'myAppService'])
                         'op':data._items[i].op*/
                         'name': data._items[i].name,
                         'op':data._items[i].op,
-                        'tasks': []
+                        'tasks': [],
+                        'id': data._items[i]._id,
                     });
                     getAllTasks(data._items[i]._id, i)
                 }
@@ -192,21 +193,22 @@ angular.module('b', ['ngRoute', 'myAppService'])
             $http.defaults.headers.common.Pragma = "no-cache";
             $http.defaults.headers.common['Authorization'] = 'Basic '+auth;
 
-            $scope.tasks = [];
+            $scope.threads = [];
             $http({             //wysyłanie żądania do API
                 method: 'GET',
                 cache: false,
                 url: "http://127.0.0.1:5000/"+nextlink
             }).
             success(function(data, status, headers, config){
+                console.log(data);
                 for(var i=0; i<data._items.length; i++) {
-                    var img = JSON.parse(data._items[i].image);
-                    $scope.tasks.push({
-                        'title': data._items[i].name,
+                    $scope.threads.push({
+                        'name': data._items[i].name,
+                        'op':data._items[i].op,
+                        'tasks': [],
                         'id': data._items[i]._id,
-                        'tag':data._items[i]._etag,
-                        'image':img
                     });
+                    getAllTasks(data._items[i]._id, i)
                 }
                 if(data._links.next != null) {
                     $scope.next = true;
@@ -236,21 +238,22 @@ angular.module('b', ['ngRoute', 'myAppService'])
             $http.defaults.headers.common.Pragma = "no-cache";
             $http.defaults.headers.common['Authorization'] = 'Basic '+auth;
 
-            $scope.tasks = [];
+            $scope.threads = [];
             $http({             //wysyłanie żądania do API
                 method: 'GET',
                 cache: false,
                 url: "http://127.0.0.1:5000/"+previouslink
             }).
             success(function(data, status, headers, config){
+                console.log(data);
                 for(var i=0; i<data._items.length; i++) {
-                    var img = JSON.parse(data._items[i].image);
-                    $scope.tasks.push({
-                        'title': data._items[i].name,
+                    $scope.threads.push({
+                        'name': data._items[i].name,
+                        'op':data._items[i].op,
+                        'tasks': [],
                         'id': data._items[i]._id,
-                        'tag':data._items[i]._etag,
-                        'image':img
                     });
+                    getAllTasks(data._items[i]._id, i)
                 }
                 if(data._links.next != null) {
                     $scope.next = true;
@@ -264,12 +267,6 @@ angular.module('b', ['ngRoute', 'myAppService'])
                 } else {
                     $scope.prev = false;
                 }
-            }).
-            error(function(data, status, headers, config) {
-                if(status === 401) {
-                    $location.url('/signin');
-                }
-                console.log(data, status);
             });
 
         };
@@ -287,24 +284,23 @@ angular.module('b', ['ngRoute', 'myAppService'])
 
             //var fileName = filedialog();
             console.log(thread);
-            if($scope.img === undefined) {
-                $scope.img = {filetype: "", filename: "", filesize: 0, base64: ""};
+            if(thread.img === undefined) {
+                thread.img = {filetype: "", filename: "", filesize: 0, base64: ""};
             }
 
             $http({         //przesyłanie żądania do API
                 method: 'POST',
                 cache: false,
                 url: 'http://127.0.0.1:5000/item',      
-                //url: 'http://localhost:5000/item',
                 data: {
                     name: title,
                     user: user,
-                    image: JSON.stringify($scope.img),
+                    image: JSON.stringify(thread.img),
                     thread: thread.id                               //TODO dodawanie threada
                 }
             })
                 .success(function (data, status, headers, config) {
-                    $location.path('/userHome');
+                    $location.path('/b');
                 })
                 .error(function(data, status, headers, config) {
                     if(status === 401) {
