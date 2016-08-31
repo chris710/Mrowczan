@@ -236,7 +236,7 @@ angular.module('b', ['ngRoute', 'myAppService'])
                 }
                 console.log(data, status);
             });
-        }
+        };
 
         $scope.loadPrev = function(){
             $http.defaults.headers.common = {"Access-Control-Request-Headers": "accept, origin, authorization"};
@@ -314,7 +314,7 @@ angular.module('b', ['ngRoute', 'myAppService'])
                     name: title,
                     user: user,
                     image: JSON.stringify($scope.img),
-                    thread: thread.id        //TODO dodawanie threada
+                    thread: thread.id                               //TODO dodawanie threada
                 }
             })
                 .success(function (data, status, headers, config) {
