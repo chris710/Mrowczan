@@ -15,7 +15,7 @@
     </div>
     <h1>/b/</h1>
     <div class="list-group" id="thread-list" ng-repeat="thread in threads">
-        <div class="list-group" ng-repeat="task in tasks">
+        <div class="list-group" ng-repeat="task in thread.tasks">
             <a href="#" onclick="return false;" class="list-group-item active">
                 <p class="list-group-item-text">{{task.title}}</p>
                 <p class="list-group-item-text">{{task.thread}}</p>

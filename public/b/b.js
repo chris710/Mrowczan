@@ -46,11 +46,11 @@ angular.module('b', ['ngRoute', 'myAppService'])
                         //'image':img,
                         'op':data._items[i].op*/
                         'name': data._items[i].name,
-                        'op':data._items[i].op
+                        'op':data._items[i].op,
+                        'tasks': []
                     });
-                    getAllTasks(data._items[i]._id)
+                    getAllTasks(data._items[i]._id, i)
                 }
-                //console.log(data._links.next.href);
                 if(data._links.next != null) {
                     $scope.next = true;
                     nextlink = data._links.next.href;
@@ -74,14 +74,13 @@ angular.module('b', ['ngRoute', 'myAppService'])
         };
         getAllThreads();
 
-        var getAllTasks = function (thread) {
+        var getAllTasks = function (thread, index) {
             $http.defaults.headers.common = {"Access-Control-Request-Headers": "accept, origin, authorization"};
             $http.defaults.headers.common = {"Access-Control-Expose-Headers": "Origin, X-Requested-With, Content-Type, Accept"};
             $http.defaults.headers.common["Cache-Control"] = "no-cache";
             $http.defaults.headers.common.Pragma = "no-cache";
             $http.defaults.headers.common['Authorization'] = 'Basic '+auth;
 
-            $scope.tasks = [];
             $http({             //wysyłanie żądania do API
                 method: 'GET',
                 cache: false,
@@ -89,13 +88,9 @@ angular.module('b', ['ngRoute', 'myAppService'])
                 //url: 'http://127.0.0.1:5000/item?where={"user":"'+user+'"}&max_results=5'
             }).
             success(function(data, status, headers, config){
-                //console.log(auth);
-                //console.log(JSON.parse(data._items[1].image));
-                console.log(data);
                 for(var i=0; i<data._items.length; i++) {
                     var img = JSON.parse(data._items[i].image);
-                    console.log(img);
-                    $scope.tasks.push({
+                    $scope.threads[index].tasks.push({
                         'title': data._items[i].name,
                         'id': data._items[i]._id,
                         'tag':data._items[i]._etag,
@@ -103,8 +98,9 @@ angular.module('b', ['ngRoute', 'myAppService'])
                         'username':data._items[i].username
                     });
                 }
+                //console.log($scope.threads[i]);
                 //console.log(data._links.next.href);
-                if(data._links.next != null) {
+                /*if(data._links.next != null) {
                     $scope.next = true;
                     nextlink = data._links.next.href;
                 } else {
@@ -115,7 +111,7 @@ angular.module('b', ['ngRoute', 'myAppService'])
                     previouslink = data._links.prev.href;
                 } else {
                     $scope.prev = false;
-                }
+                }*/
             }).
             error(function(data, status, headers, config) {
                 if(status === 401) {
@@ -203,13 +199,8 @@ angular.module('b', ['ngRoute', 'myAppService'])
                 url: "http://127.0.0.1:5000/"+nextlink
             }).
             success(function(data, status, headers, config){
-                //console.log(data);
-                //console.log(auth);
-                //console.log(JSON.parse(data._items[1].image));
-                console.log(data);
                 for(var i=0; i<data._items.length; i++) {
                     var img = JSON.parse(data._items[i].image);
-                    console.log(img);
                     $scope.tasks.push({
                         'title': data._items[i].name,
                         'id': data._items[i]._id,
@@ -252,13 +243,8 @@ angular.module('b', ['ngRoute', 'myAppService'])
                 url: "http://127.0.0.1:5000/"+previouslink
             }).
             success(function(data, status, headers, config){
-                //console.log(data);
-                //console.log(auth);
-                //console.log(JSON.parse(data._items[1].image));
-                console.log(data);
                 for(var i=0; i<data._items.length; i++) {
                     var img = JSON.parse(data._items[i].image);
-                    console.log(img);
                     $scope.tasks.push({
                         'title': data._items[i].name,
                         'id': data._items[i]._id,
@@ -286,7 +272,7 @@ angular.module('b', ['ngRoute', 'myAppService'])
                 console.log(data, status);
             });
 
-        }
+        };
         
         $scope.addItem = function(title, thread) {
             var auth = CommonProp.getUserAuth();
