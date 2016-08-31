@@ -43,7 +43,6 @@ DOMAIN = {
                 'data_relation': {
                     'resource': 'user'
                 },
-                #'required': True       TODO dodawaj automatycznie
             },
             'username': {
                 'type': 'string'
@@ -51,9 +50,9 @@ DOMAIN = {
             'thread': {
                 'type': 'objectid',
                 'data_relation': {
-                    'resource': 'threads'
+                    'resource': 'thread'
                 },
-                # 'required': True,     TODO to pozniej
+                'required': True,     # TODO to pozniej
             }
         },
         'resource_methods': ['GET', 'POST', 'DELETE'],
@@ -76,7 +75,7 @@ DOMAIN = {
                 'data_relation': {
                     'resource': 'item'
                 },
-                'required': True
+                # 'required': True
             },
         },
         'resource_methods': ['GET', 'POST', 'DELETE'],

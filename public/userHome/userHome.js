@@ -37,10 +37,10 @@ angular.module('userHome', ['ngRoute', 'myAppService'])
             //console.log(data);
             //console.log(auth);
             //console.log(JSON.parse(data._items[1].image));
-            console.log(data);
+            //console.log(data);
             for(var i=0; i<data._items.length; i++) {
                 var img = JSON.parse(data._items[i].image);
-                console.log(img);
+                //console.log(img);
                 $scope.tasks.push({
                     'title': data._items[i].name,
                     'id': data._items[i]._id,
@@ -150,10 +150,10 @@ angular.module('userHome', ['ngRoute', 'myAppService'])
             //console.log(data);
             //console.log(auth);
             //console.log(JSON.parse(data._items[1].image));
-            console.log(data);
+            //console.log(data);
             for(var i=0; i<data._items.length; i++) {
                 var img = JSON.parse(data._items[i].image);
-                console.log(img);
+                //console.log(img);
                 $scope.tasks.push({
                     'title': data._items[i].name,
                     'id': data._items[i]._id,
@@ -199,10 +199,10 @@ angular.module('userHome', ['ngRoute', 'myAppService'])
             //console.log(data);
             //console.log(auth);
             //console.log(JSON.parse(data._items[1].image));
-            console.log(data);
+            //console.log(data);
             for(var i=0; i<data._items.length; i++) {
                 var img = JSON.parse(data._items[i].image);
-                console.log(img);
+                //console.log(img);
                 $scope.tasks.push({
                     'title': data._items[i].name,
                     'id': data._items[i]._id,

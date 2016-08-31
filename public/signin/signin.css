@@ -90,3 +90,7 @@ input, textarea{
 :-ms-input-placeholder { /* Internet Explorer 10+ */
     color: #ffd2b4;
 }
+.list-group#thread-list:not(:last-child) {
+    padding: 50px;
+    border-bottom: 1px solid #ccc;
+}
