@@ -88,7 +88,6 @@ angular.module('b', ['ngRoute', 'myAppService'])
                 method: 'GET',
                 cache: false,
                 url: 'http://127.0.0.1:5000/item?where={"thread":"'+thread+'"}&max_results=5'
-                //url: 'http://127.0.0.1:5000/item?where={"user":"'+user+'"}&max_results=5'
             }).
             success(function(data, status, headers, config){
                 for(var i=0; i<data._items.length; i++) {
@@ -300,7 +299,8 @@ angular.module('b', ['ngRoute', 'myAppService'])
                 }
             })
                 .success(function (data, status, headers, config) {
-                    $location.path('/b');
+                    //$location.path('/b');
+                    getAllThreads();
                 })
                 .error(function(data, status, headers, config) {
                     if(status === 401) {
