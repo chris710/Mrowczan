@@ -52,6 +52,7 @@ angular.module('b', ['ngRoute', 'myAppService'])
                         'id': data._items[i]._id,
                         'tag':data._items[i]._etag,
                     });
+                    //console.log(data.)
                     getAllTasks(data._items[i]._id, i)
                 }
                 if(data._links.next != null) {

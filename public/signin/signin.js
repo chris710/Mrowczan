@@ -15,6 +15,7 @@ angular.module('signin', ['base64', 'ngRoute', 'myAppService'])
 
 .controller('SignInCtrl', ['$scope', '$http', '$base64', '$window', '$location', 'CommonProp', function($scope, $http, $base64, $window, $location, CommonProp){
     $scope.signIn = function() {
+        var error = null;
         var username = $scope.username;
         var password = $scope.password;
         var authdata = $base64.encode(username+':'+password);
@@ -37,6 +38,9 @@ angular.module('signin', ['base64', 'ngRoute', 'myAppService'])
         }).
         error(function(data, status, headers, config) {
             console.log(data, status);
+            if (data._error.code == '401') {
+                $scope.error = 'No such user or wrong password!'
+            }
         });
     };
 }]);
