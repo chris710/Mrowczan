@@ -9,7 +9,8 @@ angular.module('myApp', [
     'signup',
     'userHome',
     'addItem',
-    'b'
+    'b',
+    'userPanel'
 ]).
 config(['$routeProvider', function($routeProvider) {
     $routeProvider.otherwise({redirectTo: '/home'});

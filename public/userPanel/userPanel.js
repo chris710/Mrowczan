@@ -1,0 +1,118 @@
+/**
+ * Created by st3rn on 04/10/16.
+ */
+'use strict';
+
+angular.module('userPanel', ['ngRoute', 'myAppService'])
+    .config(['$routeProvider', function($routeProvider){
+        $routeProvider.when('/userPanel', {
+            templateUrl: '../userPanel/userPanel.html',
+            controller: 'UserPanelCtrl'
+        });
+    }])
+    .controller('UserPanelCtrl', ['$scope', 'CommonProp', '$http', '$location', function($scope, CommonProp, $http, $location) {
+        var auth = CommonProp.getUserAuth();
+        var user = CommonProp.getUser();
+        var nextlink;
+        var previouslink;
+        var next = false;
+        var prev = false;
+        var error = null;
+        $scope.edit = {};
+        
+        $scope.changePwd = function(oldPwd, newPwd, newPwd2) {
+            var auth = CommonProp.getUserAuth();
+            var user = CommonProp.getUser();
+
+
+            $http.defaults.headers.common = {"Access-Control-Request-Headers": "accept, origin, authorization"};
+            $http.defaults.headers.common = {"Access-Control-Expose-Headers": "Origin, X-Requested-With, Content-Type, Accept"};
+            $http.defaults.headers.common["Cache-Control"] = "no-cache";
+            $http.defaults.headers.common.Pragma = "no-cache";
+            $http.defaults.headers.common['Authorization'] = 'Basic '+auth;
+            $http.defaults.headers.common['If-Match'] = $scope.edit.tag;
+            
+            if($scope.newPwd != newPwd2) {
+                $scope.error = "New passwords doesn't match!"
+            }
+
+            $http({
+                method: 'PATCH',
+                cache: false,
+                url: 'http://127.0.0.1:5000/user/'+$scope.edit.id,      //TODO find correct URL
+                data: {
+                    name: $scope.edit.task      //TODO encrypt password
+                }
+            }).
+            success(function (data,status,headers,config) {     //TODO redirect after success/error
+                $('#editModal').modal('hide');
+                getAllTask();
+            }).
+            error(function(data,status,headers,config) {
+                console.log(data, status);
+            });
+        };
+
+        $scope.editTask = function(title,id,tag){
+            $scope.edit.task = title;
+            $scope.edit.id = id;
+            $scope.edit.tag = tag;
+            console.log(tag);
+            $('#editModal').modal('show');
+        };
+
+        $scope.update = function () {
+            $http.defaults.headers.common = {"Access-Control-Request-Headers": "accept, origin, authorization"};
+            $http.defaults.headers.common = {"Access-Control-Expose-Headers": "Origin, X-Requested-With, Content-Type, Accept"};
+            $http.defaults.headers.common["Cache-Control"] = "no-cache";
+            $http.defaults.headers.common.Pragma = "no-cache";
+            $http.defaults.headers.common['Authorization'] = 'Basic '+auth;
+            $http.defaults.headers.common['If-Match'] = $scope.edit.tag;
+
+            $http({
+                method: 'PATCH',
+                cache: false,
+                url: 'http://127.0.0.1:5000/item/'+$scope.edit.id,
+                data: {
+                    name: $scope.edit.task
+                }
+            }).
+            success(function (data,status,headers,config) {
+                $('#editModal').modal('hide');
+                getAllTask();
+            }).
+            error(function(data,status,headers,config) {
+                console.log(data, status);
+            })
+        };
+
+        $scope.deletion = {};
+
+        $scope.confirmDelete = function (id, tag) {
+            $scope.deletion.id = id;
+            $scope.deletion.tag = tag;
+            $('#deleteModal').modal('show');
+        };
+
+        $scope.deleteTask = function(){
+            $http.defaults.headers.common = {"Access-Control-Request-Headers": "accept, origin, authorization"};
+            $http.defaults.headers.common = {"Access-Control-Expose-Headers": "Origin, X-Requested-With, Content-Type, Accept"};
+            $http.defaults.headers.common["Cache-Control"] = "no-cache";
+            $http.defaults.headers.common.Pragma = "no-cache";
+            $http.defaults.headers.common['Authorization'] = 'Basic '+auth;
+            $http.defaults.headers.common['If-Match'] = $scope.deletion.tag;
+
+            $http({
+                method: 'DELETE',
+                cache: false,
+                url: 'http://127.0.0.1:5000/item/'+ $scope.deletion.id}).
+            success(function(data, status, headers, config) {
+                $('#deleteModal').modal('hide');
+                getAllTask();
+            }).
+            error(function(data, status, headers, config) {
+                console.log(data,status);
+            });
+        };
+
+    }]);

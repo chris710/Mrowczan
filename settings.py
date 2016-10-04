@@ -3,6 +3,7 @@ ITEM_METHODS = ['GET', 'PATCH', 'DELETE']   # /item/id
 X_DOMAINS = '*'
 X_HEADERS = ['Authorization', 'If-Match', 'Access-Control-Expose-Headers', 'Access-Control-Allow-Origin', 'Content-Type', 'Pragma', 'Cache-Control']
 X_EXPOSE_HEADERS = ['Origin', 'X-Requested-With', 'Content-Type', 'Accept']
+OPLOG = True
 # EXTENDED_MEDIA_INFO: TRUE
 DOMAIN = {
     'user': {
